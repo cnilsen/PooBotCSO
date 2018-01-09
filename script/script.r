@@ -1,4 +1,4 @@
-#options(repos = "https://mran.microsoft.com")
+options(repos = "https://mran.microsoft.com")
 
 # Installing packages ------------------------------------------------------------------
 
