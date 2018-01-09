@@ -1,4 +1,4 @@
-options(repos = "https://mran.microsoft.com")
+#options(repos = "https://mran.microsoft.com")
 
 # Installing packages ------------------------------------------------------------------
 
@@ -25,8 +25,9 @@ library('geojsonio')
 
 
 cso.status.raw <- as.data.frame(geojson_read('https://raw.githubusercontent.com/keum/data_display/master/cso_test_file.geojson', method = 'local', parse = TRUE), stringAsFactors = FALSE)
-tweet.log <- read.csv('tweetlog.csv')
-i <- tweet.log$i
+
+read(i, 'tweetdata')
+
 j=nrow(cso.status.raw)
 
 name <-(cso.status.raw[1,12])
@@ -58,15 +59,14 @@ if (cso.status == 2){
   asecret <- credentials$twitter$access_secret
   
   tweet(tweet.text)
-  tweet.log$last.tweet <- tweet.text
-  tweet.log$time <- Sys.time()
+
 }
   #update last_tweet_info
 if (i <= j)  {
-  tweet.log$i <- i+1
+  i = i+1
 } else {
-  tweet.log$i = 1
+  i = 1
 }
 
-  write.csv(tweet.log,'tweetlog.csv')
+write(i,'tweetdata')
 
